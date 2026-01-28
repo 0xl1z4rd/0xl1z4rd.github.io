@@ -1,3 +1,23 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = "https://lizardsec.xyz/"
+languageCode = "pt-br"
+title = "LizardSec"
+theme = "terminal"
+
+[params]
+  # Opções de cor: orange, blue, red, green, pink
+  themeColor = "green"
+  
+  # O que aparece no "prompt" do terminal no site
+  prompt = "root@lizardsec:~#"
+  
+  # Configurações de exibição
+  showFullContent = false
+  readingTime = true
+
+[[menu.main]]
+  name = "Posts"
+  url = "/posts"
+
+[[menu.main]]
+  name = "Sobre"
+  url = "/about"
