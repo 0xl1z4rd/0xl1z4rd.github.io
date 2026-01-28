@@ -1,0 +1,74 @@
+/* 1. RESET GLOBAL E FUNDO */
+html, body {
+    background-color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #bebebe !important;
+    /* Removido o display: flex daqui para não quebrar o layout lateral */
+}
+
+/* 2. CONTAINER (ESTRUTURA CENTRALIZADA) */
+.container {
+    background-color: #000000 !important;
+    max-width: 1000px !important; /* Largura máxima do seu blog */
+    width: 90% !important;        /* Largura relativa para telas menores */
+    margin: 0 auto !important;    /* Isso centraliza o bloco na tela */
+    display: block !important;
+    padding: 40px 0 !important;
+}
+
+/* 3. CORES (VERDE HACKER) */
+:root {
+    --theme-color: #00CC00; 
+}
+
+.logo {
+    background-color: var(--theme-color) !important;
+    color: #000000 !important; /* Texto "Terminal" em preto para contraste */
+}
+
+.header__inner {
+    border-color: var(--theme-color) !important;
+}
+
+.post-title, .menu-link, a {
+    color: var(--theme-color) !important;
+    text-decoration: none !important;
+}
+
+/* 4. AJUSTE DO POST NA HOME (PARA NÃO ENCOLHER) */
+.post {
+    width: 100% !important;      /* Força o post a ocupar toda a largura do container */
+    display: block !important;
+    min-height: 120px !important; /* Mantém o espaço mesmo sem descrição */
+    margin-bottom: 40px !important;
+    padding: 20px 0 !important;
+}
+
+/* 5. MATAR O AMARELO RESTANTE (PONTILHADOS) */
+.post-title::after {
+    background-image: radial-gradient(circle, var(--theme-color) 1px, transparent 1px) !important;
+}
+
+/* Garante que o cabeçalho e rodapé sigam a largura do container */
+.header, .footer {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+
+
+/* 1. Remove os colchetes e o link "read more" da listagem */
+.post-read-more, 
+.read-more,
+a.read-more {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* 2. Caso o tema esteja usando um parágrafo vazio para segurar os colchetes */
+.post-content p:empty {
+    display: none !important;
+}

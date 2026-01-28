@@ -2,12 +2,12 @@
 <html lang="en">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
-    <title>Investiment House :: LizardSec</title>
+    <title>Investment House - Write-up :: LizardSec</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="" />
-<meta name="keywords" content=", " />
+<meta name="description" content=" " />
+<meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
 
@@ -16,6 +16,9 @@
 
 
 
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/custom.min.10dfc98e9bdb967d2ccd4cfc19193cd092e7046aaf4bcedda92ff52072c4d7b3.css">
 
   
   <link rel="stylesheet" href="http://localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
@@ -72,20 +75,18 @@
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Investiment House">
-<meta property="og:description" content="" />
+<meta property="og:title" content="Investment House - Write-up">
+<meta property="og:description" content=" " />
 <meta property="og:url" content="http://localhost:1313/posts/investment-house/" />
 <meta property="og:site_name" content="LizardSec" />
 
-  
-  
-  <meta property="og:image" content="http://localhost:1313/">
+  <meta property="og:image" content="http://localhost:1313/og-image.png">
 
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
 
 
-  <meta property="article:published_time" content="2026-01-27 22:43:36 -0300 -03" />
+  <meta property="article:published_time" content="2025-01-22 00:00:00 &#43;0000 UTC" />
 
 
 
@@ -121,11 +122,11 @@
     <ul class="menu__dropdown">
       
         
-          <li><a href="/posts">Posts</a></li>
+          <li><a href="/about">&lt;/About&gt;</a></li>
         
       
         
-          <li><a href="/about">Sobre</a></li>
+          <li><a href="/posts">&lt;/Posts&gt;</a></li>
         
       
       
@@ -142,11 +143,11 @@
     
       
         
-          <li><a href="/posts" >Posts</a></li>
+          <li><a href="/about" >&lt;/About&gt;</a></li>
         
       
         
-          <li><a href="/about" >Sobre</a></li>
+          <li><a href="/posts" >&lt;/Posts&gt;</a></li>
         
       
     
@@ -161,16 +162,18 @@
     
 <article class="post">
   <h1 class="post-title">
-    <a href="http://localhost:1313/posts/investment-house/">Investiment House</a>
+    <a href="http://localhost:1313/posts/investment-house/">Investment House - Write-up</a>
   </h1>
-  <div class="post-meta"><time class="post-date">2026-01-27</time></div>
+  <div class="post-meta"><time class="post-date">2025-01-22</time><span class="post-reading-time">6 min read (1241 words)</span></div>
 
   
     <span class="post-tags">
       
-      #<a href="http://localhost:1313/tags/"></a>&nbsp;
+      #<a href="http://localhost:1313/tags/ctf/">CTF</a>&nbsp;
       
-      #<a href="http://localhost:1313/tags/"></a>&nbsp;
+      #<a href="http://localhost:1313/tags/hacking/">Hacking</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/hackingclub/">HackingClub</a>&nbsp;
       
     </span>
   
@@ -179,7 +182,80 @@
 
   
 
-  <div class="post-content"></div>
+  <div class="post-content"><div>
+        <h3 id="investment-house---write-up">Investment House - Write-up<a href="#investment-house---write-up" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>===========================</p>
+<p><img src="/img/investment-house/image-48.png" alt=""></p>
+<h2 id="introduction">INTRODUCTION<a href="#introduction" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<hr>
+<p>Este será o primeiro write-up que estarei publicando de uma série que estão por vir, envolvendo máquinas retiradas tanto do Hacking Club quanto do Hack the Box. Estarei demonstrando algumas abordagens de como cheguei em determinadas conclusões em certas partes do desafio e dialogando alguns conceitos sobre as tecnicas utilizadas.</p>
+<p>Investment House foi uma das máquinas mais interessantes de explorar porque ela aborda conceitos bastante realístico e intrigantes que forçam você a aprender e buscar por coisas novas (um dos principais benefícios do CTF). Sem mais delongas, vamos para o campo de batalha. XD</p>
+<h2 id="recon-phase">RECON PHASE<a href="#recon-phase" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<hr>
+<p>Como de praxe começaremos com um mapeamento das portas abertas para identificar os possiveis vetores de ataques:</p>
+<p><img src="/img/investment-house/image-3.png" alt=""></p>
+<p>Como pode-se notar no output do nmap temos apenas duas portas abertas. Porém a que mais nos interessa no momento será a porta 80, que está rodando um servidor web e que trás muitas possibilidades de exploração. Além disso também temos o hostname que iremos adicionar no nosso <code>/etc/hosts</code> para facilitar o acesso da aplicação.</p>
+<p>Antes de mergulhar de cabeça na aplicação é sempre interessante verificar se não há outros possíveis subdominios rodando. Usando o tio gobuster logo foi identificado dois novos subs, <code>api</code> e <code>secrets</code>:</p>
+<p><img src="/img/investment-house/image-8.png" alt=""></p>
+<p>Aqui as possibilidades já aumentaram e com isso precisamos analisar o que cada uma dessas aplicações nos reserva de interessante. Como toda mente curiosa é claro que comecei olhando logo o sub <code>secrets</code>:</p>
+<p><img src="/img/investment-house/image-9.png" alt=""></p>
+<p>A principio não possui nada de interessante além de uma pagina de login. Não tem muita coisa a se fazer aqui. Porém como todo processo de recon, é claro que será feito aquele fuzzing nervoso, e pra isso usarei o tio ffuf:</p>
+<p><img src="/img/investment-house/image-10.png" alt=""></p>
+<p><img src="/img/investment-house/image-11.png" alt=""></p>
+<p>Comecei analisando o <code>/api</code> e logo de cara nos deparamos com esse misconfig onde conseguimos listar/ler dois arquivos interessantes:</p>
+<p><img src="/img/investment-house/image-12.png" alt=""></p>
+<p><img src="/img/investment-house/image-13.png" alt=""></p>
+<p>Aqui as coisas começam a ficar mais interessante ainda&hellip; no <code>list.php</code> conseguimos identificar um serviço de api (que encontramos no começo do recon com o gobuster) que fornece informações de Cryptos, e o <code>rotate.php</code> que parece ser um endpoint interessante a analisar.</p>
+<p><img src="/img/investment-house/image-14.png" alt=""></p>
+<p>Fazendo o POST para esse endpoint ele nos retorna um response muito interessante nos dando a opção de gerar um novo secret caso o tenha perdido. E como não possuimos nenhum token, é claro que iremos tentar gerar.</p>
+<p><img src="/img/investment-house/image-15.png" alt=""></p>
+<p>Depois ter gerado o token agora precisamos descobrir onde ele será usado. Pela lógica, com certeza deverá ter algum endpoint na api onde não possuimos permissão de acesso, por isso o tio ffuf já entrou em ação novamente nos dando o ouro:</p>
+<p><img src="/img/investment-house/image-17.png" alt=""></p>
+<p><img src="/img/investment-house/image-18.png" alt=""></p>
+<p>Fazendo a requisição para esse endpoint perceba que precisamos do token para acessa-lo.</p>
+<p><img src="/img/investment-house/image-20.png" alt=""></p>
+<p>O interessante de brincar com algumas api&rsquo;s é que na maioria dos casos ela sempre mostrará no corpo da resposta o que está faltando para a requisição funcionar como esperado. E como todo paramêtro suspeito, é claro que irá rolar uns testes básicos por vulnerabilidades. Como mostrado na imagem abaixo, foi identificado um LFI, que será uma de nossas portas de entrada para as proximas etapas da exploração. XD</p>
+<p><img src="/img/investment-house/image-21.png" alt=""></p>
+<h2 id="exploitation-phase">EXPLOITATION PHASE<a href="#exploitation-phase" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<hr>
+<p>Aqui as possibilidades aumentaram bastante porque com um LFI em mãos podemos fazer vários testes para chegar a um possivel RCE e conseguir a shell na máquina. Antes de tentar qualquer testes a cegas, precisamos entender como as aplicações estão estruturadas dentro do servidor para ampliar nossos vetores de ataque. Além disso é interessante entender o objetivo de cada aplicação para não cair nos famosos buracos de coelhos, que são muito comums em máquinas hard e insanas. Como já sabemos, o objetivo da aplicação secrets era conseguir ter acesso ao token para usar na api e poder ter acesso a esse LFI cabuloso. E a aplicação principal que está rodando na porta 80, o que tem de interessante?</p>
+<p><img src="/img/investment-house/image-22.png" alt=""></p>
+<p><img src="/img/investment-house/image-23.png" alt=""></p>
+<p>Acessando a aplicação web logo nos deparamos com uma web page bem simples que contém uma pagina de login e um formulário de registro.</p>
+<p><img src="/img/investment-house/image-6.png" alt=""></p>
+<p><img src="/img/investment-house/image-7.png" alt=""></p>
+<p>Após a criação e autenticação do nosso usuário nos deparamos com uma pagina muito interessante contendo um upload de imagem e uma pagina de download de portfolio. Até aqui já podemos notar vários possiveis vetores de testes, e para nossa alegria temos o nosso LFI que possibilitará ler e entender como essa aplicação funciona fazendo aquele code review nervoso. XD</p>
+<p><img src="/img/investment-house/image-28.png" alt=""></p>
+<p>Comecei o teste analisando o <code>download.php</code> porque parecia um endpoint interessante devido suas funcionalidades e parâmetros. Analisando seu código já notamos uma vulnerabilidade nesse bloco onde ele confia cegamente no caminho passado pelo usuário desde que ele comece com o <code>phar://</code>. O wapper <code>phar://</code> no PHP é usado para acessar arquivos dentro de um arquivo <code>phar://</code> (PHP archive). No entanto, muitas funções de sistema de arquivos (como,<code>is_file</code>,<code>filesize</code>,<code>readfile</code>, etc.) ao interagirem com um arquivo PHAR, desserializam automaticamente os metadados contidos nele. Ou seja, se conseguirmos uma forma de controlar o arquivo que será processado como um PHAR, podemos forçar a desserialização de um objeto malicioso, conseguindo triggar nosso sonhado RCE. Agora vêm os poréms, porque pra explorar essa gracinha precisamos descobrir algum gadget chain para poder fazer o trem funcionar. Depois de olhar até a alma da aplicação encontrei no <code>register.php</code> algo interessante, a classe que estavamos tanto buscando pra fazer nosso exploit funcionar:</p>
+<p><img src="/img/investment-house/image-29.png" alt=""></p>
+<p><img src="/img/investment-house/image-31.png" alt=""></p>
+<p>Dando uma fuçada nesse código já da pra perceber que podemos controlar essas três propriedades <code>$path</code>, <code>$file</code>, <code>$content</code> na hora de criar nosso objeto serializado, podendo assim escrever arquivos no servidor. O método mágico <code>__destruct</code> é executado automaticamente pelo PHP quando o objeto é destruído (geralmente no final da execução do script). Ele não precisa ser chamado explicitamente. O rolê principal está dentro do <code>__destruct</code>, a função <code>file_put_contents()</code> pega três argumentos:</p>
+<ol>
+<li>O caminho completo do arquivo (<code>$this-&gt;path . $this-&gt;file</code>)</li>
+<li>O conteúdo a ser escrito (<code>$this-&gt;content</code>)</li>
+</ol>
+<p>Como a gente tem controle sobre as três propriedades, a gente pode chegar no tio servidor e dizer: &ldquo;Ei tio, escreva ESTE conteúdo, NESTE aquivo, NESTE diretório&rdquo;. XD</p>
+<p>Com toda essa viajem teórica, na prática nosso exploit ficou mais ou menos assim:</p>
+<p><img src="/img/investment-house/image-36.png" alt=""></p>
+<p>Depois de ter gerado nosso payload o proximo passo será encontrar uma forma de upar ele no servidor para acessar com o <code>phar://</code>. E, como já sabemos, nós temos essa funcionalidade no profile do usuário. Primeiro temos que renomear para <code>.jpg</code> para o upload funcionar como esperado, o phar não liga pra extensão, o papo dele é ter os objetos serializados dentro do metadados.</p>
+<p><img src="/img/investment-house/image-37.png" alt=""></p>
+<p><img src="/img/investment-house/image-38.png" alt=""></p>
+<p>Depois de ter triggado nosso arquivo phar conseguimos com sucesso acessar nosso <code>mocoto.php</code>. A partir daqui não tem mistério, é só pegar a reverse shell e começar o processo de privilege escalation.</p>
+<h2 id="post-exploitation-phase">POST-EXPLOITATION PHASE<a href="#post-exploitation-phase" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<hr>
+<p><img src="/img/investment-house/image-39.png" alt=""></p>
+<p><img src="/img/investment-house/image-40.png" alt=""></p>
+<p><img src="/img/investment-house/image-42.png" alt=""></p>
+<p>Começamos buscando por binários que possuem as permissões de SUID no sistema, e um que chamou bastante a atenção foi esse da imagem apontado, que parece ser uma tool de gerenciamento de banco de dados via CLI. Ao executar ele percebemos algumas funcionalidades interessantes:</p>
+<p><img src="/img/investment-house/image-43.png" alt=""></p>
+<p>Depois de alguns testes percebemos que ele possui uma vulnerabilidades de SQLi após colocar um input incomum no Seach user. Além disso a mensagem &ldquo;unrecognized token&rdquo; indica que estamos lidando com um SQLite. Após alguns testes percebemos que a função <code>load_extension</code> está habilitado no SQLite, nos direcionando para a proxima fase da exploração que será criar uma biblioteca compartilhada maliciosa (.so) e tentar pegar uma revshell no root.</p>
+<p><img src="/img/investment-house/image-44.png" alt=""></p>
+<p><img src="/img/investment-house/image-46.png" alt=""></p>
+<p>Acima mostro o código que utilizei para criar a biblioteca maliciosa e o comando para gera-la. Abaixo mostro o payload utilizado para chamar a biblioteca que foi gerada no <code>/tmp</code> e por fim nós temos a shell como root. XD</p>
+<p><img src="/img/investment-house/image-47.png" alt=""></p>
+<p>Topic <a href="https://lizardsec.xyz/tag/ctf/">CTF</a> <a href="https://lizardsec.xyz/tag/hacking/">Hacking</a> <a href="https://lizardsec.xyz/tag/hackingclub/">HackingClub</a></p>
+
+      </div></div>
 
   
 

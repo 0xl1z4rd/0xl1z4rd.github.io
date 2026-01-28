@@ -6,21 +6,21 @@
     <description>Recent content on LizardSec</description>
     <generator>Hugo</generator>
     <language>pt-br</language>
-    <lastBuildDate>Tue, 27 Jan 2026 22:43:36 -0300</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Investiment House</title>
+      <title>Investment House - Write-up</title>
       <link>http://localhost:1313/posts/investment-house/</link>
-      <pubDate>Tue, 27 Jan 2026 22:43:36 -0300</pubDate>
+      <pubDate>Wed, 22 Jan 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/investment-house/</guid>
-      <description></description>
+      <description>&lt;h3 id=&#34;investment-house---write-up&#34;&gt;Investment House - Write-up&lt;/h3&gt;&#xA;&lt;p&gt;===========================&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/investment-house/image-48.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;INTRODUCTION&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Este será o primeiro write-up que estarei publicando de uma série que estão por vir, envolvendo máquinas retiradas tanto do Hacking Club quanto do Hack the Box. Estarei demonstrando algumas abordagens de como cheguei em determinadas conclusões em certas partes do desafio e dialogando alguns conceitos sobre as tecnicas utilizadas.&lt;/p&gt;&#xA;&lt;p&gt;Investment House foi uma das máquinas mais interessantes de explorar porque ela aborda conceitos bastante realístico e intrigantes que forçam você a aprender e buscar por coisas novas (um dos principais benefícios do CTF). Sem mais delongas, vamos para o campo de batalha. XD&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Hello World</title>
-      <link>http://localhost:1313/posts/hello-world/</link>
-      <pubDate>Tue, 27 Jan 2026 22:20:20 -0300</pubDate>
-      <guid>http://localhost:1313/posts/hello-world/</guid>
-      <description></description>
+      <title># &gt;_ WHOAMI</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;Just another person who loves break things and understand how things works!&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

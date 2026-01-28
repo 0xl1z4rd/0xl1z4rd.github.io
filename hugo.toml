@@ -6,20 +6,23 @@ theme = "terminal"
 [params]
   # Opções de cor: orange, blue, red, green, pink
   themeColor = "green"
-  
+  customCSS = ["css/custom.css"]
+  favicon = "favicon.png"
   # O que aparece no "prompt" do terminal no site
   prompt = "root@lizardsec:~#"
   
   # Configurações de exibição
   showFullContent = false
+  summaryLength = 0
   readingTime = true
+  fullWidthContent = true
 
 [[menu.main]]
-  name = "Posts"
+  name = "</Posts>"
   url = "/posts"
 
 [[menu.main]]
-  name = "Sobre"
+  name = "</About>"
   url = "/about"
 
 [[params.social]]
