@@ -21,3 +21,11 @@ theme = "terminal"
 [[menu.main]]
   name = "Sobre"
   url = "/about"
+
+[[params.social]]
+    name = "github"
+    url = "https://github.com/0xl1z4rd"
+
+[[params.social]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/andmoraes/"
